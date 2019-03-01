@@ -31,11 +31,12 @@ diff _ [] = []
 diff(a:as) b = if(pertence a b) then diff as b  else [a] ++ diff as b
 
 uniao_lista:: [Integer] -> [Integer] -> [Integer]
-uniao_lista []_ = []
-uniao_lista _[] = []
-uniao_lista (a:as) (x:xz) = [a, x] ++ uniao_lista as xz
+uniao_lista a b = a ++ b
 
-formapar:: [Integer] -> [Integer] -> [(Integer, Integer)]
-formapar []_ = []
-formapar _[] = []
-formapar (a:as) (x:xz) = [(a, x)] ++ formapar as xz
+listapar:: [Integer] -> [Integer] -> [(Integer, Integer)]
+listapar [] b = []
+listapar (a:as) b = formapar a b ++ listapar as b
+
+formapar:: Integer -> [Integer] -> [(Integer, Integer)]
+formapar x [] = []
+formapar x (a:as) = [(x, a)] ++ formapar x as
