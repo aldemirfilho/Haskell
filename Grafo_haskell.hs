@@ -12,7 +12,7 @@ isGrafo v ((o, d):as) = (pertence o v) &&
                         isGrafo v as
 
 grau:: Integer -> [(Integer,Integer)] -> Integer
-grau v []=0
+grau v [] = 0
 grau v ((x,y):as) = if (v == x)
                     then if (v == y)
                           then 2 + (grau v as)
@@ -33,3 +33,16 @@ grau_recepcao v [] = 0
 grau_recepcao v ((x,y):as) = if(v == y)
                               then 1 + (grau_recepcao v as)
                              else (grau_recepcao v as)
+
+tipo_vertice:: Integer -> [(Integer, Integer)] -> Char
+tipo_vertice v ((x,y):as) = if((grau_emissao v ((x,y):as) == 0 && 
+                                  grau_recepcao v ((x,y):as) == 0) || 
+                                  (grau_emissao v ((x,y):as) /= 0 && 
+                                  grau_recepcao v ((x,y):as) /= 0))
+                            then 'n'
+                            else if(grau_emissao v ((x,y):as) /= 0 && 
+                                  grau_recepcao v ((x,y):as) == 0)
+                            then 'f'
+                            else if(grau_emissao v ((x,y):as) == 0 && 
+                                  grau_recepcao v ((x,y):as)  /= 0)
+                            then 's'
