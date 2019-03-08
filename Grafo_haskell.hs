@@ -46,3 +46,5 @@ tipo_vertice v ((x,y):as) = if((grau_emissao v ((x,y):as) == 0 &&
                             else if(grau_emissao v ((x,y):as) == 0 && 
                                   grau_recepcao v ((x,y):as)  /= 0)
                             then 's'
+                            else
+                              'n'
